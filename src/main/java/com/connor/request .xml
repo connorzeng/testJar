@@ -1,0 +1,18 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<soap:Header>
+		<AuthenticationToken>
+			<username>connor</username>
+			<password>architecter</password>
+		</AuthenticationToken>
+	</soap:Header>
+	<soap:Body>
+		<getUser xmlns="http://helloworld.ws.com">
+			<in0 xmlns="http://helloworld.ws.com">
+				<name xsi:nil="true" />
+				<nickName xsi:nil="true" />
+			</in0>
+			<in1 xmlns="http://helloworld.ws.com" />
+		</getUser>
+	</soap:Body>
+</soap:Envelope>

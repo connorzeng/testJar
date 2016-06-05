@@ -1,0 +1,17 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<soap:Body>
+		<getUserResponse xmlns="http://helloworld.ws.com">
+			<out xmlns="http://helloworld.ws.com">
+				<ns1:CUser xmlns:ns1="http://entity.connor.com">
+					<department xmlns="http://entity.connor.com">[0xe4][0xba][0x8b][0xe4][0xb8][0x9a][0xe9][0x83][0xa8]</department>
+					<email xmlns="http://entity.connor.com">ganggang@163.com</email>
+					<id xmlns="http://entity.connor.com" xsi:nil="true" />
+					<salary xmlns="http://entity.connor.com">8888</salary>
+					<sex xmlns="http://entity.connor.com" xsi:nil="true" />
+					<workername xmlns="http://entity.connor.com" xsi:nil="true" />
+				</ns1:CUser>
+			</out>
+		</getUserResponse>
+	</soap:Body>
+</soap:Envelope>
