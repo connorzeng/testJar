@@ -6,7 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-
+/**
+ * 读写锁测试
+ * @author connor_zeng
+ *
+ */
 public class StaticCache {
 	
 	private static final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();

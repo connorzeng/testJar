@@ -1,6 +1,10 @@
 package com.connor.thread;
 
-
+/**
+ * happen before 测试
+ * @author connor_zeng
+ *
+ */
 public class SimpleHappenBefore {
 
 	/** 这是一个验证结果的变量 */
