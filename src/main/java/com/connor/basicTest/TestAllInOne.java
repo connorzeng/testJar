@@ -7,7 +7,6 @@ import java.util.StringTokenizer;
 public class TestAllInOne {
     
     public static void main(String[] args) {
-        
         System.out.println(TestStringTokenizer.getTokens("hello beautiful world"));
         
     }

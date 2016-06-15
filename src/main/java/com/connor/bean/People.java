@@ -45,5 +45,9 @@ public class People {
 	public int hashCode() {
 		return name.hashCode() + age.hashCode();
 	}
+	
+	public static void main(String[] args) {
+        
+    }
 
 }

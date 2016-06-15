@@ -6,3 +6,7 @@ public class InnerClassTest {
 	
 	
 }
+
+class TestI{
+    
+}
