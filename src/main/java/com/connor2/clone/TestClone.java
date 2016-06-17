@@ -1,5 +1,9 @@
 package com.connor2.clone;
 
+import java.io.Serializable;
+
+import com.util.BeanUtil;
+
 /**
  * 测试clone
  *  JAVA 复制对象时为什么要用克隆clone（）而不用“=”的原因 ?
@@ -39,11 +43,16 @@ public class TestClone {
         UserDeep d2 = (UserDeep) d1.clone();
         System.out.print(d1);
         System.out.println(d2);
+        
+        //使用Serilize实现深克隆
+        UserFlow u3 =  BeanUtil.cloneTo(u1);
+        System.out.print(u1);
+        System.out.println(u3);
     }
 }
 
 //浅克隆中address对象相当于"="号赋值
-class UserFlow implements Cloneable{
+class UserFlow implements Cloneable,Serializable{
     private String username;
     private Address address;
     public String getUsername() {
@@ -102,7 +111,10 @@ class UserDeep implements Cloneable{
     }
 }
 
-class Address implements Cloneable{
+class Address implements Cloneable,Serializable{
+    
+    
+    
     private String country;
     private String province;
     

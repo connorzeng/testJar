@@ -1,18 +1,36 @@
-<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<soap:Header>
-		<AuthenticationToken>
-			<username>connor</username>
-			<password>architecter</password>
-		</AuthenticationToken>
-	</soap:Header>
-	<soap:Body>
-		<getUser xmlns="http://helloworld.ws.com">
-			<in0 xmlns="http://helloworld.ws.com">
-				<name xsi:nil="true" />
-				<nickName xsi:nil="true" />
-			</in0>
-			<in1 xmlns="http://helloworld.ws.com" />
-		</getUser>
-	</soap:Body>
-</soap:Envelope>
+	<soapenv:Body>
+		<putASNData xmlns="http://ws.webservices.services.adapter.datahub/">
+			<wmsSecurityInfo xmlns="">
+				<password>8888</password>
+				<username>FLUXQK360</username>
+			</wmsSecurityInfo>
+			<asnInfo xmlns="">
+				<wmsASNHeaders>
+					<ASNREFERENCE1>BECTH201606160001</ASNREFERENCE1>
+					<ASNREFERENCE2>BEC160616H00583</ASNREFERENCE2>
+					<ASNREFERENCE3>&#x9000;&#x8D27;&#x539F;&#x56E0;&#x9000;&#x8D27;&#x539F;&#x56E0;&#x9000;&#x8D27;&#x539F;&#x56E0;</ASNREFERENCE3>
+					<ASNTYPE>B2BTH</ASNTYPE>
+					<CUSTOMERID>QK1</CUSTOMERID>
+					<detailsItem>
+						<ASNLINENO>101001</ASNLINENO>
+						<CUSTOMERID>QK1</CUSTOMERID>
+						<EXPECTEDQTY_EACH>2</EXPECTEDQTY_EACH>
+						<SKU>F10100010</SKU>
+						<USERDEFINE1>BECXH4QWFKW</USERDEFINE1>
+						<USERDEFINE2>101001</USERDEFINE2>
+					</detailsItem>
+					<WAREHOUSEID>WH01</WAREHOUSEID>
+				</wmsASNHeaders>
+			</asnInfo>
+			<wmsParam xmlns="">
+				<customerid>QK360</customerid>
+				<messageid>104</messageid>
+				<stdno>ASN</stdno>
+				<warehouseid>WH01</warehouseid>
+			</wmsParam>
+		</putASNData>
+	</soapenv:Body>
+</soapenv:Envelope>
