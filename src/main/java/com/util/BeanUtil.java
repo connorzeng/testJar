@@ -40,9 +40,7 @@ public class BeanUtil {
                 throw new RuntimeException(e);
             }
         }
-
         return dist;
-
     }
 
 }
