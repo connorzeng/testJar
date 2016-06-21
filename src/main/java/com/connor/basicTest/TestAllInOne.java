@@ -9,6 +9,10 @@ public class TestAllInOne {
     public static void main(String[] args) {
         System.out.println(TestStringTokenizer.getTokens("hello beautiful world"));
         
+        TestI i = new TestI("zenggang", 1);
+        TestI f = i;
+        System.out.println(TestI.getSingle().hashCode());//单例模式下所获取的HashCode是相同的
+        
     }
 }
 
@@ -30,5 +34,35 @@ class TestStringTokenizer{
         }
         return list.toArray(new String[list.size()]);
     }
+}
+
+/**
+ * 测试单例模式HashCode
+ * @author zenggang
+ */
+class TestI{
+    private static TestI single = new TestI("hello", 1); 
+    private String name;
+    private int age;
     
+    public TestI(String name, int age) {
+        super();
+        this.name = name;
+        this.age = age;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+    public static TestI getSingle(){
+        return single;
+    }
 }

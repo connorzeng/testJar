@@ -1,43 +1,47 @@
 package com.connor.basicTest;
 
 public class InnerClassTest {
-	
-	public static void main(String[] args) {
-	    
-	    TestI i = new TestI("zenggang", 1);
-	    TestI f = i;
-	    
-	    System.out.println(TestI.getSingle().hashCode());
-	    System.out.println(TestI.getSingle().hashCode());
-	    System.out.println(TestI.getSingle().hashCode());
-	    System.out.println(TestI.getSingle().hashCode());
-	    System.out.println(TestI.getSingle().hashCode());
+    
+    public static void main(String[] args) {
+        
     }
 }
-class TestI{
+
+class TestInner{
+    /**
+     * 在方法体内的内部类
+     */
+    public InnerClass getInt(){
+        final int a = 1;
+        class InnerClassImpl implements InnerClass {
+            //private static int ab = 1;//普通内部类不能声明static变量
+            public InnerClassImpl(){
+            }
+            
+            @Override
+            public int getInt() {
+                return a;
+            }
+        }
+        return new InnerClassImpl();
+    }
     
-    private static TestI single = new TestI("hello", 1); 
-    private String name;
-    private int age;
-    
-    public TestI(String name, int age) {
-        super();
-        this.name = name;
-        this.age = age;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public int getAge() {
-        return age;
-    }
-    public void setAge(int age) {
-        this.age = age;
-    }
-    public static TestI getSingle(){
-        return single;
+    /**
+     * 在方法体内的匿名内部类
+     * 1.匿名内部类没有构造器
+     */
+    public InnerClass getInnerClass(){
+        final int a = 1;//Cannot refer to the non-final local variable a defined in an enclosing scope
+        return new InnerClass() {
+            @Override
+            public int getInt() {
+                return a;
+            }
+        };
     }
 }
+
+interface InnerClass{
+    int getInt();
+}
+
