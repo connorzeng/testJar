@@ -118,14 +118,15 @@ class LockRunner implements Runnable {
         try {
             lock.lockInterruptibly();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            System.out.println("LockRunner interrupted " + Thread.currentThread().getName());
+            return;
         }
         try {
             /*
              * cond.await();//cond.await();阻塞也不能响应Interrupt } catch (InterruptedException e) { e.printStackTrace();
              */
             SleepUtils.second(10);
-            System.out.println("LockRunner wake up" + Thread.currentThread().getName());
+            System.out.println("LockRunner wake up " + Thread.currentThread().getName());
         } finally {
             lock.unlock();
         }
