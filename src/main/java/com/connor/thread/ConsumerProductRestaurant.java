@@ -35,7 +35,7 @@ public class ConsumerProductRestaurant {
 		@Override
 		public void run() {
 			while (!Thread.interrupted()) {
-				synchronized (this) {
+				synchronized (this) {//Chief.class Exception in thread "pool-1-thread-1" java.lang.IllegalMonitorStateException
 					while (restaurant.meal != null) {
 						try {
 							wait();
@@ -79,7 +79,6 @@ public class ConsumerProductRestaurant {
 							System.out.println("我要吃东西,但是要等 id:"
 									+ Thread.currentThread().getId());
 							wait();
-
 						}
 					}
 					synchronized (restaurant.chief) {
