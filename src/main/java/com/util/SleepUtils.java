@@ -1,4 +1,4 @@
-package com.connor.tool;
+package com.util;
 
 import java.util.concurrent.TimeUnit;
 

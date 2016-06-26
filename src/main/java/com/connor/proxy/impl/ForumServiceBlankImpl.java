@@ -1,7 +1,7 @@
 package com.connor.proxy.impl;
 
 import com.connor.proxy.ForumService;
-import com.connor.tool.SleepUtils;
+import com.util.SleepUtils;
 
 public class ForumServiceBlankImpl implements ForumService{
 
