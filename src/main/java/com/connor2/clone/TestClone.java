@@ -48,6 +48,14 @@ public class TestClone {
         UserFlow u3 =  BeanUtil.cloneTo(u1);
         System.out.print(u1);
         System.out.println(u3);
+        
+        //使用BeanUtils进行bean的复制, 非保护性copy.
+        UserDeep dCopy = new UserDeep();
+        BeanUtil.copyProperties(u1, dCopy);
+        dCopy.getAddress().setCountry("米国");//非保护性copy. 会改动原来address中的country值
+        System.out.println(dCopy.getUsername() == u1.getUsername());
+        System.out.println(dCopy.getAddress() == u1.getAddress());
+        System.out.println(u1.getAddress().getCountry());
     }
 }
 
@@ -85,13 +93,15 @@ class UserDeep implements Cloneable{
         return username;
     }
     public void setUsername(String username) {
-        this.username = username;
+        this.username = new String(username);
     }
     public Address getAddress() {
         return address;
     }
     public void setAddress(Address address) {
-        this.address = address;
+        this.address = new Address();
+        this.address.setCountry(address.getCountry());
+        this.address.setProvince(address.getProvince());
     }
     @Override
     public String toString() {
@@ -112,8 +122,6 @@ class UserDeep implements Cloneable{
 }
 
 class Address implements Cloneable,Serializable{
-    
-    
     
     private String country;
     private String province;

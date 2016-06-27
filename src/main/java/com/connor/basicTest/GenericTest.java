@@ -35,6 +35,18 @@ public class GenericTest {
             e.printStackTrace();
         }
         //2.泛型方法
+        ConnorGeneric3<? extends Serializable,String,Integer> ldd = new ConnorGeneric3<String,String,Integer>();
+        List<? extends Serializable> list = new ArrayList<String>();
+        
+        //3.通配符捕获
+        List<?> lists = new ArrayList<String>();
+        addList(lists, "dd");//调用捕获方法
+        for (Object obj : lists){
+            System.out.println(obj.toString());
+        }
+    }
+    public static <V> void addList(List list ,V v){
+        list.add(v);
     }
 }
 /**
@@ -57,15 +69,17 @@ class ConnorGeneric2<F> extends ConnorGeneric<F>{
 /**
  * 泛型方法
  */
-class ConnorGeneric3<T,Y,Z>{
+class ConnorGeneric3<T extends Serializable,Y,Z>{
     public T getT(){
         return null;
     }
-    public void wildcard(List<? extends Serializable> list) {//设置泛型上下界
+    public <F> void wildcard(List<F> list) {//设置泛型上下界
         //list.add(1);//编译错误 
     }  
+    public <F> void wildcard(List<? extends Serializable> list,List<? super String> list2) {//设置泛型上下界
+        //list.add(1);//编译错误 
+    } 
 }
-
 class Info<T extends Number>{ // 指定上限，只能是数字类型  
     private T var ;     // 此类型由外部决定  
     public T getVar(){  
@@ -89,4 +103,26 @@ class GenericsDemo{
         return temp ;   // 返回实例化对象  
     }  
 };
+/**
+ * 通配符捕获
+ */
+interface Box<T> {
+    public T get();
+    public void put(T element);
+}
+class TestBox{
+    public void unbox(Box<?> box) {
+        System.out.println(box.get());
+    }
+    public void rebox(Box<?> box) {
+        //The method put(capture#3-of ?) in the type Box<capture#3-of ?> is not applicable for the arguments (capture#4-of ?)
+        //box.put(box.get());//报错,必须使用捕获通配符
+        reboxHelper(box);
+    }
+    private<V> void reboxHelper(Box<V> box) {
+        box.put(box.get());
+    }
+}
+
+
 
