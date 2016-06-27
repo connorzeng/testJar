@@ -3,7 +3,7 @@ package com.connor.thread;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-import com.connor.tool.SleepUtils;
+import com.util.SleepUtils;
 
 /**
  * 一.测试线程await/wait/sleep阻塞,响应中断 1.wait object.await阻塞线程 2.sleep Thread.sleep阻塞线程 3.runing 运行状态 4.reentrantLock condition.await阻塞线程

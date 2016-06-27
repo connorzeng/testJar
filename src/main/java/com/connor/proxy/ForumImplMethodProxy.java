@@ -2,11 +2,11 @@ package com.connor.proxy;
 
 import java.lang.reflect.Method;
 
-import com.connor.tool.PerformanceMonitor;
-
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
+
+import com.util.PerformanceMonitor;
 
 public class ForumImplMethodProxy implements MethodInterceptor{
 	

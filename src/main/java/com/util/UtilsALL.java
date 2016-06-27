@@ -1,4 +1,4 @@
-package com.connor.tool;
+package com.util;
 
 /**
  * 万能工具类

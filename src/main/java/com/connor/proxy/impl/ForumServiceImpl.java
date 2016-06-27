@@ -1,8 +1,8 @@
 package com.connor.proxy.impl;
 
 import com.connor.proxy.ForumService;
-import com.connor.tool.PerformanceMonitor;
-import com.connor.tool.SleepUtils;
+import com.util.PerformanceMonitor;
+import com.util.SleepUtils;
 
 public class ForumServiceImpl implements ForumService{
 	

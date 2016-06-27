@@ -3,7 +3,7 @@ package com.connor.fileType;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.connor.tool.UtilsALL;
+import com.util.UtilsALL;
 
 /**
  * 文件魔数
