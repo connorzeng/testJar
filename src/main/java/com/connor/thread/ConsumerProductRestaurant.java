@@ -14,8 +14,8 @@ public class ConsumerProductRestaurant {
 	class Meal {
 		private int orderNum = 0;
 
-		public Meal() {
-			orderNum++;
+		public Meal(int orderNum) {
+			this.orderNum = orderNum;
 		}
 
 		@Override
@@ -45,17 +45,18 @@ public class ConsumerProductRestaurant {
 					}
 				}
 				synchronized (restaurant.eater) {
+				//synchronized (Eater.class) {  //不能所住Eeter.class
 					if (restaurant.mealCount >= 10) {
-						// restaurant.exec.shutdown(); //等当前线程结束后关系关闭线程池
-						restaurant.exec.shutdownNow();// 打断当前线程,立马关闭
+						//restaurant.exec.shutdown(); //等当前线程结束后关系关闭线程池,不会发出Interrutped请求
+						restaurant.exec.shutdownNow();// 打断当前线程,立马关闭,发出Interruted请求
+					} else {
+						System.out.println("  我这是做的第" + Integer.valueOf(restaurant.mealCount+1) + "菜");
+						restaurant.meal = new Meal(restaurant.mealCount+1);
+						restaurant.mealCount++;
+						restaurant.eater.notifyAll();
 					}
-					System.out.println("  我这是做的第" + Integer.valueOf(restaurant.mealCount+1) + "菜");
-					restaurant.meal = new Meal();
-					restaurant.mealCount++;
-					restaurant.eater.notifyAll();
 				}
 			}
-
 			System.out.println("OUT ORDER CHIEF");
 		}
 	}
@@ -76,14 +77,13 @@ public class ConsumerProductRestaurant {
 				while (!Thread.interrupted()) {
 					synchronized (this) {
 						while (restaurant.meal == null) {
-							System.out.println("我要吃东西,但是要等 id:"
-									+ Thread.currentThread().getId());
+							System.out.println("我要吃东西,但是要等 id:");
 							wait();
 						}
 					}
 					synchronized (restaurant.chief) {
 						System.out.println("我吃了东西了:"
-								+ Thread.currentThread().getId());
+								+ + restaurant.meal.orderNum);
 						restaurant.meal = null;
 						restaurant.chief.notifyAll();
 					}

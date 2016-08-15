@@ -43,29 +43,28 @@ public class ExecutorTest {
 		Future<String> future = singleThreadPool.submit(new Eat());
 		Future future2 = singleThreadPool.submit(new Eat2());
 		//future.cancel(true);
-		System.out.println(future.get());
-		System.out.println(future2.get());
-		
+		//System.out.println(future.get());
+		//System.out.println(future2.get());
 		System.out.println("=============使用FutureTask 执行==============");
 		/**
 		 * 使用FutureTask 执行
 		 */
 		FutureTask<String> task = new FutureTask<String>(new Eat());
 		task.run();
-		System.out.println(task.get());
+		//System.out.println(task.get());
 		String a = "";
 		FutureTask<String> task2 = new FutureTask<String>(new Eat2(),a);
 		task2.run();
-		System.out.println(task2.get());
+		//System.out.println(task2.get());
 		System.out.println("============使用Thread 执行===============");
 		/**
 		 * 使用Thread 执行
 		 */
 		FutureTask<String> threadTask = new FutureTask<String>(new Eat());
 		Thread thread = new Thread(threadTask);
-		thread.run();
-		System.out.println(threadTask.get());
-		
+		thread.start();
+		//System.out.println(threadTask.get());
+		System.out.println("============使用Executor 执行===============");
 		/**
 		 * 测试饱和策略,Exception in thread "main" java.util.concurrent.RejectedExecutionException 
 		 * AbortPolicy
@@ -87,8 +86,8 @@ class Eat implements Callable{
 
 	@Override
 	public String call() throws Exception {
-		SleepUtils.killTime(2);
 		System.out.println("我要回去了");
+		SleepUtils.killTime(2);
 		return "i am back";
 	}
 }

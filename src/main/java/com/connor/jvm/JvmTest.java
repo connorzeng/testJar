@@ -1,8 +1,21 @@
 package com.connor.jvm;
 
-public class JvmTest {
-	public static void main(String[] args) {
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.WeakHashMap;
 
+public class JvmTest {
+	public static void main(String[] args) throws InterruptedException {
+		
+		Integer int1 = new Integer(1);
+		Integer int2 = new Integer(1);
+		Integer int3 = 1;
+		int int4 = 1;
+		System.out.println(int1 == int2);
+		System.out.println(int1 == int3);
+		System.out.println(int4 == int3);
+		
 		/**
 		 * 情景一：字符串池 JAVA虚拟机(JVM)中存在着一个字符串池，其中保存着很多String对象; 并且可以被共享使用，因此它提高了效率。
 		 * 由于String类是final的，它的值一经创建就不可改变。
@@ -16,7 +29,7 @@ public class JvmTest {
 		// ↑ true 指向同一个对象，
 		System.out.println("s1.equals(s2) : " + (s1.equals(s2)));
 		// ↑ true 值相等
-		// ↑------------------------------------------------------over
+		// ↑ ------------------------------------------------------over
 		/**
 		 * 情景二：关于new String("")
 		 * 
@@ -76,6 +89,59 @@ public class JvmTest {
 		System.out.println("str9 = str89 : " + (str9 == str89));
 		// ↑str8为常量变量，编译期会被优化
 		// ↑------------------------------------------------------over
-
+		
+		
+		/*int size = 10000000;  
+		char c[] = new char[size];  
+		for (int i = 0; i < size; i++) {  
+		    c[i] = 'a';  
+		}  
+		//使用带字符数组参数构造函数创建字符串时，字符串对象不会放入字符串池  
+		String strTest = new String(c);  
+		System.out.println("String字符串对象创建完毕...");  
+		Thread.sleep(5000);  
+		strTest.intern();//到里会看见内存增加  
+		System.out.println("第一次调用intern()完毕...");  
+		Thread.sleep(5000);  
+		strTest.intern();//再过5秒将看不到内存增长，因为池中有了，不会再放入，所以内存无变化  
+		System.out.println("第二次调用intern()完毕...");  
+		Thread.sleep(5000); */
+		
+		
+		String a = new String("a");  
+        String b = new String("b");  
+        Map weakmap = new WeakHashMap();  
+        Map map = new HashMap();  
+        map.put(a, "aaa");  
+        map.put(b, "bbb");  
+        Map map2 = new HashMap(); 
+        map2.put(a, "aaa");  
+        map2.put(b, "bbb");
+        weakmap.put(a, "aaa");  
+        weakmap.put(b, "bbb");  
+        map.remove(a);  
+          
+        a=null;  
+        b=null;  
+          
+        System.gc();  
+        Iterator i = map.entrySet().iterator();  
+        while (i.hasNext()) {  
+            Map.Entry en = (Map.Entry)i.next();  
+            System.out.println("map:"+en.getKey()+":"+en.getValue());  
+        }  
+  
+        Iterator j = weakmap.entrySet().iterator();  
+        while (j.hasNext()) {  
+            Map.Entry en = (Map.Entry)j.next();  
+            System.out.println("weakmap:"+en.getKey()+":"+en.getValue());    
+        }  
+		
+        Iterator i2 = map2.entrySet().iterator();  
+        while (i2.hasNext()) {  
+            Map.Entry en = (Map.Entry)i2.next();  
+            System.out.println("map2:"+en.getKey()+":"+en.getValue());  
+        } 
+		
 	}
 }

@@ -22,6 +22,7 @@ public class MapTest {
 	}
 }
 
+
 class HashKey{
 	
 	private String id;
@@ -53,5 +54,4 @@ class HashKey{
 	public int hashCode() {
 		return Integer.valueOf(id) + 100;
 	}
-	
 }

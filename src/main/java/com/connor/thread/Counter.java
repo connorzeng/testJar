@@ -13,27 +13,33 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class Counter {
 
-	private static Integer i = 0;
+	private Integer i = 0;
 	private AtomicInteger atomicI = new AtomicInteger(0);
 
 	private ReentrantLock lock = new ReentrantLock();
 	private ReentrantLock fairLock = new ReentrantLock(true);
 
 	public static void main(String[] args) {
+		
+		int j = 1;
+		int f = j++;
+		int a = 1;
+		int b = ++a;
+		System.out.println(f + "==" + b);
+		
+		Long startMills = System.currentTimeMillis();
 
 		final Counter c = new Counter();
-
-		List<Thread> ts = new ArrayList<Thread>(600);
-		Long startMills = System.currentTimeMillis();
-		for (int i = 0; i < 100; i++) {
+		List<Thread> ts = new ArrayList<Thread>(100000);
+		for (int i = 0; i < 4; i++) {
 			Thread t = new Thread(new Runnable() {
 				@Override
 				public void run() {
-					for (int j = 0; j < 100; j++) {
-						// c.count();
-						// c.safeCount();
-						c.syncCount();
-						// c.lockCount();
+					for(int j=0;j<100000000;j++){
+						c.count();
+						//c.safeCount();
+						//c.syncCount();
+						//c.lockCount();
 					}
 				}
 			});
@@ -50,14 +56,14 @@ public class Counter {
 		}
 
 		Long endMills = System.currentTimeMillis();
-		System.out.println(i);
+		System.out.println("result i = " + c.i);
 		System.out.println(c.atomicI.get());
 		System.out.println(endMills - startMills);
 	}
 
 	private void safeCount() {
 		try {
-			Thread.sleep(10);
+			Thread.sleep(20);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -67,16 +73,19 @@ public class Counter {
 				break;
 			}
 		}
-
 	}
 
 	private void count() {
-
 		i++;
 	}
 
 	private void syncCount() {
-		synchronized (i) {
+		synchronized (this) {
+			try {
+				Thread.sleep(20);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			i++;
 		}
 	}
@@ -84,6 +93,11 @@ public class Counter {
 	private void lockCount() {
 		lock.lock();
 		try {
+			try {
+				Thread.sleep(20);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			i++;
 		} finally {
 			lock.unlock();
