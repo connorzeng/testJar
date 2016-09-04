@@ -10,7 +10,6 @@ public class FunnyTest {
     
     public static void main(String[] args) {
     	
-    	
         Integer[] a1 = {1,8};
         Integer[] a2 = {2,7};
         Integer[] a3 = {3,6};
