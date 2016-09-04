@@ -75,7 +75,6 @@ public class kafkaProductor {
 				producer.close();
 			}
 		}
-
 	}
 
 }
