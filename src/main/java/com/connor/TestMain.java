@@ -12,6 +12,11 @@ public  class TestMain {
 	
 	
 	public static void main(String[] args) {
+		
+		
+		
+		
+		
 		/*// 静态代码测试
 		ForumServiceImpl fs = new ForumServiceImpl();
 		fs.removeForum(12l);

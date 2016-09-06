@@ -2,6 +2,8 @@ package com.connor.fileType;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.util.UtilsALL;
 
@@ -26,6 +28,28 @@ public class FileMagicNumber {
 				System.out.println(fileType.name());
 			}
 		}
+		FileType a= FileType.GIF;
+		FileType b= FileType.JPEF;
+		FileType c= FileType.JPEF;
+		System.out.println(a == b);
+		System.out.println(b==c);
+		System.out.println(b.equals(c));
+		
+		
+		
+		
+		List<Person> list = new ArrayList<Person>();
+		
+		list.add(new Person(1, "a"));
+		list.add(new Person(1, "a"));
+		list.add(new Person(1, "a"));
+		list.add(new Person(1, "a"));
+		
+		List<Person> list1 = new ArrayList<Person>();
+		
+		list.removeAll(list1);
+		System.out.println(list.size());
+		
 	}
 	
 	/**
@@ -43,6 +67,31 @@ public class FileMagicNumber {
 	}
 	
 }
+
+class Person{
+	public Person(int age, String name) {
+		super();
+		this.age = age;
+		this.name = name;
+	}
+	private int age;
+	private String name;
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+}
+
+
+
 /**
  * 枚举类,继承Enum
  * @author connor_zeng
