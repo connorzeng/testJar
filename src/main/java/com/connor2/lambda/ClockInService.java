@@ -14,6 +14,8 @@ public class ClockInService {
 	}
 	
 	
-	
+	public ClockIn validateClockIn(ClockIn clockIn){
+		return null;
+	}
 	
 }
