@@ -29,7 +29,7 @@ public class kafkaConsumer extends Thread {
 
 	@Override
 	public void run() {
-		ConsumerConnector consumer = createConsumer();
+		/*ConsumerConnector consumer = createConsumer();
 		Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
 		topicCountMap.put(topic, 1); // 一次从主题中获取一个数据
 		Map<String, List<KafkaStream<byte[], byte[]>>> messageStreams = consumer.createMessageStreams(topicCountMap);
@@ -38,7 +38,7 @@ public class kafkaConsumer extends Thread {
 		while (iterator.hasNext()) {
 			String message = new String(iterator.next().message());
 			System.out.println("接收到: " + message);
-		}
+		}*/
 	}
 
 	private ConsumerConnector createConsumer() {
