@@ -19,7 +19,7 @@ import org.apache.commons.logging.LogFactory;
 /**
  * HTTP工具类
  * 
- * @author
+ * @author connor
  * 
  */
 public class HttpUtils {
@@ -111,8 +111,87 @@ public class HttpUtils {
 	}
 
 	/**
+	 * 据Map生成URL字符串
+	 *
+	 * @param map
+	 *            Map
+	 * @param valueEnc
+	 *            URL编码
+	 * @return URL
+	 */
+	private static String getUrl(Map<String, String> map, String valueEnc) {
+
+		if (null == map || map.keySet().size() == 0) {
+			return (EMPTY);
+		}
+		StringBuffer url = new StringBuffer();
+		Set<String> keys = map.keySet();
+		for (Iterator<String> it = keys.iterator(); it.hasNext();) {
+			String key = it.next();
+			if (map.containsKey(key)) {
+				String val = map.get(key);
+				String str = val != null ? val : EMPTY;
+				try {
+					str = URLEncoder.encode(str, valueEnc);
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+				url.append(key).append("=").append(str).append(URL_PARAM_CONNECT_FLAG);
+			}
+		}
+		String strURL = EMPTY;
+		strURL = url.toString();
+		if (URL_PARAM_CONNECT_FLAG.equals(EMPTY + strURL.charAt(strURL.length() - 1))) {
+			strURL = strURL.substring(0, strURL.length() - 1);
+		}
+
+		return (strURL);
+	}
+
+	/**
+	 * 据Map生成URL字符串
+	 *
+	 * @param map Map
+	 * @return URL
+	 */
+	private static String getUrl(Map<String, String> map) {
+
+		if (null == map || map.keySet().size() == 0) {
+			return (EMPTY);
+		}
+		StringBuffer url = new StringBuffer();
+		Set<String> keys = map.keySet();
+		for (Iterator<String> it = keys.iterator(); it.hasNext();) {
+			String key = it.next();
+			if (map.containsKey(key)) {
+				String val = map.get(key);
+				String str = val != null ? val : EMPTY;
+				url.append(key).append("=").append(str).append(URL_PARAM_CONNECT_FLAG);
+			}
+		}
+		String strURL = url.toString();
+		if (URL_PARAM_CONNECT_FLAG.equals(EMPTY + strURL.charAt(strURL.length() - 1))) {
+			strURL = strURL.substring(0, strURL.length() - 1);
+		}
+
+		return (strURL);
+	}
+
+	public static String getFullUrl(String url, Map<String, String> params){
+		StringBuffer strtTotalURL = new StringBuffer(EMPTY);
+
+		if (strtTotalURL.indexOf("?") == -1) {
+			strtTotalURL.append(url).append("?").append(getUrl(params));
+		} else {
+			strtTotalURL.append(url).append("&").append(getUrl(params));
+		}
+		return strtTotalURL.toString();
+	}
+
+
+	/**
 	 * GET方式提交数据
-	 * 
+	 *
 	 * @param url
 	 *            待请求的URL
 	 * @param params
@@ -160,43 +239,5 @@ public class HttpUtils {
 		}
 
 		return response;
-	}
-
-	/**
-	 * 据Map生成URL字符串
-	 * 
-	 * @param map
-	 *            Map
-	 * @param valueEnc
-	 *            URL编码
-	 * @return URL
-	 */
-	private static String getUrl(Map<String, String> map, String valueEnc) {
-
-		if (null == map || map.keySet().size() == 0) {
-			return (EMPTY);
-		}
-		StringBuffer url = new StringBuffer();
-		Set<String> keys = map.keySet();
-		for (Iterator<String> it = keys.iterator(); it.hasNext();) {
-			String key = it.next();
-			if (map.containsKey(key)) {
-				String val = map.get(key);
-				String str = val != null ? val : EMPTY;
-				try {
-					str = URLEncoder.encode(str, valueEnc);
-				} catch (UnsupportedEncodingException e) {
-					e.printStackTrace();
-				}
-				url.append(key).append("=").append(str).append(URL_PARAM_CONNECT_FLAG);
-			}
-		}
-		String strURL = EMPTY;
-		strURL = url.toString();
-		if (URL_PARAM_CONNECT_FLAG.equals(EMPTY + strURL.charAt(strURL.length() - 1))) {
-			strURL = strURL.substring(0, strURL.length() - 1);
-		}
-
-		return (strURL);
 	}
 }
