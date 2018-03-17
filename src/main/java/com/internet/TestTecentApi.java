@@ -4,26 +4,37 @@ import com.util.HttpUtils;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import java.util.*;
+import java.util.Base64;
+import java.util.Date;
+import java.util.Map;
+import java.util.TreeMap;
+
 
 public class TestTecentApi {
 
     private static final String SECRET_ID = "AKIDWu65rSu32qQozxAGbkhRyIPJ0Up0tlNn";
     private static final String SECRET_KEY = "LUQ9ew1ub5MQHvMaZIlyvd5HFxPbXHlz";
 
-    //这里要使用JUNIT进行单元测试
-    public static void main(String[] args) {
-        //sha256_HMAC(srcStr,SECRET_KEY);
 
-        System.out.println(translateZH2EN("你叫什么名字啊"));
-        System.out.println(translateZH2EN("你几岁了"));
+    public void beforeTest(){
+        System.out.println("before");
     }
+
+    public void afterTest(){
+        System.out.println("after");
+    }
+
+    public void test(){
+        translatezh2En("你好");
+        translatezh2En("你好啊");
+    }
+
 
     /**
      * 中文翻译为英文
      * @return 原文翻译的英文
      */
-    private static String translateZH2EN(String sourceText){
+    public void translatezh2En(String sourceText){
 
         //1.计算签名
         //Tip:计算签名的params顺序要和URL请求的顺序一致,不然会报AuthFail
@@ -48,7 +59,8 @@ public class TestTecentApi {
         params.put("Signature",signature);
 
         //要能使用eclipse中 ctlr+shift+i进行提前运算去的结果
-        return HttpUtils.URLGet(url,params,"utf-8");
+
+        System.out.println(HttpUtils.URLGet(url,params,"utf-8"));
     }
 
 
@@ -72,7 +84,5 @@ public class TestTecentApi {
         }
         return hash;
     }
-
-
 
 }
