@@ -12,9 +12,8 @@ import java.util.TreeMap;
 
 public class TestTecentApi {
 
-    private static final String SECRET_ID = "AKIDWu65rSu32qQozxAGbkhRyIPJ0Up0tlNn";
-    private static final String SECRET_KEY = "LUQ9ew1ub5MQHvMaZIlyvd5HFxPbXHlz";
-
+    private static final String SECRET_ID = "AKID054wiKpXIxgIjydKZdcS6as1VOC4YQq9";
+    private static final String SECRET_KEY = "nVIzUs56zoY8lDUZjngT4Vkr0GTVLzRh";
 
     public void beforeTest(){
         System.out.println("before");
@@ -24,42 +23,45 @@ public class TestTecentApi {
         System.out.println("after");
     }
 
-    public void test(){
-        translatezh2En("你好");
-        translatezh2En("你好啊");
+    public static void main(String[] args) {
+        translatezh2En("你好吗");
     }
+
+
 
 
     /**
      * 中文翻译为英文
      * @return 原文翻译的英文
      */
-    public void translatezh2En(String sourceText){
+    public static void translatezh2En(String sourceText){
 
         //1.计算签名
         //Tip:计算签名的params顺序要和URL请求的顺序一致,不然会报AuthFail
         String url = "https://tmt.api.qcloud.com/v2/index.php";
         Map<String, String> params = new TreeMap<>();
-        params.put("Nonce","1111");
-        params.put("Region","gz");
         params.put("Action","TextTranslate");
+        params.put("Nonce","3253");
+        params.put("Region","gz");
         params.put("SecretId",SECRET_ID);
-        params.put("SignatureMethod","HmacSHA256");
+        String timeStr = String.valueOf(new Date().getTime());
+        params.put("Timestamp",timeStr.substring(0,timeStr.length()-3));
         params.put("source","zh");
         params.put("sourceText",sourceText);
         params.put("target","en");
-        String timeStr = String.valueOf(new Date().getTime());
-        params.put("Timestamp",timeStr.substring(0,timeStr.length()-3));
+        params.put("SignatureMethod","HmacSHA256");
+
 
         //注意请求方法GET要大写
         String srcStr = "GETtmt.api.qcloud.com/v2/index.php";
         srcStr = HttpUtils.getFullUrl(srcStr,params);
         String signature = sha256_HMAC(srcStr);
-        System.out.println("signature = [" + signature + "]");
+        //System.out.println("srcStr:" + srcStr);
+        //System.out.println("signature = [" + signature + "]");
         params.put("Signature",signature);
 
+        System.out.println("sourceText = " + sourceText);
         //要能使用eclipse中 ctlr+shift+i进行提前运算去的结果
-
         System.out.println(HttpUtils.URLGet(url,params,"utf-8"));
     }
 

@@ -1,10 +1,10 @@
 package com.connor;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.connor.bean.People;
 import com.connor.bean.Person;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public  class TestMain {
 	
@@ -13,7 +13,7 @@ public  class TestMain {
 	
 	public static void main(String[] args) {
 		
-		
+		//
 		
 		
 		

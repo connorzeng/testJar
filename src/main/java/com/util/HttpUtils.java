@@ -1,12 +1,5 @@
 package com.util;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpStatus;
@@ -15,6 +8,13 @@ import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * HTTP工具类
@@ -214,7 +214,6 @@ public class HttpUtils {
 			strtTotalURL.append(url).append("&").append(getUrl(params, enc));
 		}
 		log.debug("GET请求URL = \n" + strtTotalURL.toString());
-
 		try {
 			getMethod = new GetMethod(strtTotalURL.toString());
 			getMethod.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=" + enc);
