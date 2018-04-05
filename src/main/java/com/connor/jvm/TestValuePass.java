@@ -4,7 +4,7 @@ package com.connor.jvm;
  * java是值传递
  * @author connor_zeng
  */
-public class PassValueTest {
+public class TestValuePass {
 
 	public static void main(String[] args) {
 		StringBuffer sb = new StringBuffer("Hello ");

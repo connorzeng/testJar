@@ -5,6 +5,7 @@ import com.connor.bean.Person;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public  class TestMain {
 	
@@ -12,29 +13,18 @@ public  class TestMain {
 	
 	
 	public static void main(String[] args) {
-		
-		//
-		
-		
-		
-		/*// 静态代码测试
-		ForumServiceImpl fs = new ForumServiceImpl();
-		fs.removeForum(12l);
-		fs.removeTopic(12l);
-		
-		// JDK动态代理测试 
-		ForumServiceBlankImpl fsb = new ForumServiceBlankImpl();
-		ForumHandler handler = new ForumHandler(fsb);
-		ForumService fsbProxy = (ForumService) Proxy.newProxyInstance(fsb.getClass().getClassLoader(),fsb.getClass().getInterfaces(), handler);
-		fsbProxy.removeForum(55l);
-		fsbProxy.removeTopic(5l);*/
-		
-		// CGlib
-		/*ForumImplMethodProxy proxy = new ForumImplMethodProxy();
-		ForumServiceBlankImpl fsService = (ForumServiceBlankImpl) proxy.getProxy(ForumServiceBlankImpl.class);
-		fsService.removeForum(5l);
-		fsService.removeTopic(5l);*/
-		
+
+		//TestMap
+		TreeMap<Integer,String> treeMap = new TreeMap<>();
+		treeMap.put(1,"一");
+		treeMap.put(2,"二");
+		treeMap.put(3,"三");
+		treeMap.put(4,"四");
+		treeMap.put(5,"五");
+
+
+
+
 		//HashCode
 		Person p1 = new Person("凯包子",7);
 		Person p2 = new Person("凯包子",7);
@@ -64,8 +54,6 @@ public  class TestMain {
 		Double d1 = new Double(1);
 		
 		System.out.println(getName());
-		
-		
 	}
 	
 	private static String getName(){

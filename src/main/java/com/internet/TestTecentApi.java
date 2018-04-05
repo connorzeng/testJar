@@ -1,5 +1,6 @@
 package com.internet;
 
+import com.alibaba.fastjson.JSON;
 import com.util.HttpUtils;
 
 import javax.crypto.Mac;
@@ -57,12 +58,15 @@ public class TestTecentApi {
         srcStr = HttpUtils.getFullUrl(srcStr,params);
         String signature = sha256_HMAC(srcStr);
         //System.out.println("srcStr:" + srcStr);
-        //System.out.println("signature = [" + signature + "]");
+        System.out.println("signature = [" + signature + "]");
         params.put("Signature",signature);
 
-        System.out.println("sourceText = " + sourceText);
+        System.out.println(sourceText);
         //要能使用eclipse中 ctlr+shift+i进行提前运算去的结果
-        System.out.println(HttpUtils.URLGet(url,params,"utf-8"));
+        String result = HttpUtils.URLGet(url,params,"utf-8");
+        System.out.println(result);
+        String targetText = JSON.parseObject(result).getString("targetText");
+        System.out.println(targetText);
     }
 
 

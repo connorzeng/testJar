@@ -12,7 +12,6 @@ public class Student {
  
    public Student() {
       super();
-      // TODO Auto-generated constructor stub
    }
  
    public Student(long id, String name, int age, boolean sex, Date birthday) {

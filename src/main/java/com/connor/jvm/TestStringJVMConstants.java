@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-public class StringJvmTest {
+public class TestStringJVMConstants {
 	public static void main(String[] args) throws InterruptedException {
 		
 		Integer int1 = new Integer(1);

@@ -1,6 +1,6 @@
 package com.connor.jvm;
 
-public class StringTest {
+public class TestStringAdd {
 	private static int time = 50000;
 
 	public static void main(String[] args) {
