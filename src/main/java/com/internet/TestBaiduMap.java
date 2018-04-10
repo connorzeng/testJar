@@ -3,6 +3,7 @@ package com.internet;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Test;
 import org.springframework.core.env.SystemEnvironmentPropertySource;
 
 import com.alibaba.fastjson.JSON;
@@ -15,6 +16,11 @@ import com.util.HttpUtils;
  *
  */
 public class TestBaiduMap {
+	
+	@Test
+	void test(){
+		
+	}
 
 	
 	public static void main(String[] args) {

@@ -1,29 +1,74 @@
 package com.connor;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+
 import com.connor.bean.People;
 import com.connor.bean.Person;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
 
 public  class TestMain {
 	
 	private  String test = "";
 	
 	
-	public static void main(String[] args) {
-
+	public static void main(String[] args) throws InterruptedException {
+		
+		
+		
+		List<String> a = new ArrayList<String>();
+        a.add(new String("1aaaaa"));
+        List<String> b = new LinkedList<String>();
+        b.add(new String("1bbbbb"));
+        b.add(new String("1bbbbb"));
+        //LinkedList,不能在遍历的时候进行remove,长度会出现错误,遗漏数据
+        for (String c:b){
+             b.remove(c);
+        }
+        //ArrayList不能在遍历的时候进行remove,抛出异常.
+        for (String c:a){
+             a.remove(c);
+        }
+  
+		
 		//TestMap
-		TreeMap<Integer,String> treeMap = new TreeMap<>();
-		treeMap.put(1,"一");
-		treeMap.put(2,"二");
-		treeMap.put(3,"三");
-		treeMap.put(4,"四");
-		treeMap.put(5,"五");
-
-
-
+		long one = System.currentTimeMillis();
+		Map<Integer,String> treeMap = new TreeMap<Integer,String>();
+		for (int i=0; i<10000; i++){
+			//treeMap.put(i,"一");
+		}
+		//treeMap.put(null, "");
+		long two = System.currentTimeMillis();
+		Map<Integer,String> HashMap = new HashMap<Integer,String>();
+		for (int i=0; i<10000000; i++){
+			HashMap.put(i,"一");
+		}
+		long three = System.currentTimeMillis();
+		treeMap.get(2000);
+		HashMap.get(2000);
+		System.out.println("trueMap:" + (two-one) + ";HashMap:" + (three - two ));
+		
+		/*// 静态代码测试
+		ForumServiceImpl fs = new ForumServiceImpl();
+		fs.removeForum(12l);
+		fs.removeTopic(12l);
+		
+		// JDK动态代理测试 
+		ForumServiceBlankImpl fsb = new ForumServiceBlankImpl();
+		ForumHandler handler = new ForumHandler(fsb);
+		ForumService fsbProxy = (ForumService) Proxy.newProxyInstance(fsb.getClass().getClassLoader(),fsb.getClass().getInterfaces(), handler);
+		fsbProxy.removeForum(55l);
+		fsbProxy.removeTopic(5l);*/
+		
+		// CGlib
+		/*ForumImplMethodProxy proxy = new ForumImplMethodProxy();
+		ForumServiceBlankImpl fsService = (ForumServiceBlankImpl) proxy.getProxy(ForumServiceBlankImpl.class);
+		fsService.removeForum(5l);
+		fsService.removeTopic(5l);*/
 
 		//HashCode
 		Person p1 = new Person("凯包子",7);
@@ -54,6 +99,8 @@ public  class TestMain {
 		Double d1 = new Double(1);
 		
 		System.out.println(getName());
+		
+		
 	}
 	
 	private static String getName(){
