@@ -40,7 +40,7 @@ public class TestClassLoad {
 			Method finalMethod = animal.getClass().getMethod("finalMethod", Object.class);
 			finalMethod.invoke(animal, null);*/
 			
-			TestClassLoad obj = (TestClassLoad) myLoader1.loadClass("com.connor.jvm.TestClassLoad").newInstance();
+			Object obj = myLoader1.loadClass("com.connor.jvm.TestClassLoad").newInstance();
 			System.out.println(obj.getClass());
 			System.out.println(obj instanceof TestClassLoad);
 		} catch (Exception e) {

@@ -5,9 +5,9 @@ import java.util.Hashtable;
 import java.util.TreeMap;
 
 public class MapTest {
-	
+
 	public static void main(String[] args) {
-		
+
 		Hashtable<HashKey, String> table = new Hashtable<HashKey, String>();
 		table.put(new HashKey("2"), "hello");
 		table.put(new HashKey("3"), "silly");

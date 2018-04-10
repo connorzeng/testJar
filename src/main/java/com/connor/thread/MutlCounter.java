@@ -23,6 +23,8 @@ public class MutlCounter {
 	private static Integer syncClass = 0;
 	
 	public static void main(String[] args) {
+
+
 		List<Thread> ls = new ArrayList<Thread>();
 		for (int i=0; i<10000; i++){
 			ThreadCount thread = new ThreadCount();
@@ -154,8 +156,8 @@ class ThreadCount extends Thread{
 	
 	@Override
 	public void run() {
-//		MultCount();
-		singCount();
+		MultCount();
+//		singCount();
 	}
 	
 	public void singCount(){
