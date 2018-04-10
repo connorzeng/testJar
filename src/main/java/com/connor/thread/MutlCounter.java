@@ -13,8 +13,8 @@ import java.util.concurrent.locks.ReentrantLock;
 public class MutlCounter {
 	private final static MutlCounter mutlCount = new MutlCounter();
 	private static MutlCounter mutlCountLazy;
-	private static ReentrantLock lock = new ReentrantLock();
-	private ReentrantLock staticLock = new ReentrantLock();
+	private static ReentrantLock staticLock = new ReentrantLock();
+	private ReentrantLock  lock = new ReentrantLock();
 	private static Integer syncLock = 0;
 	private static Integer syncStaticLock = 0;
 	private static Integer syncMethod = 0;
@@ -23,8 +23,11 @@ public class MutlCounter {
 	private static Integer syncClass = 0;
 	
 	public static void main(String[] args) {
-
-
+		
+		synchronized(staticLock){
+			
+		}
+		
 		List<Thread> ls = new ArrayList<Thread>();
 		for (int i=0; i<10000; i++){
 			ThreadCount thread = new ThreadCount();
@@ -33,6 +36,7 @@ public class MutlCounter {
 		for (Thread thread : ls){
 			thread.start();
 		}
+		
 		for (Thread thread : ls){
 			try {
 				thread.join();
@@ -41,13 +45,14 @@ public class MutlCounter {
 			}
 		}
 		
-		System.out.println(syncMethod);
-		System.out.println(syncThis);
-		System.out.println(syncStaticMethod);
-		System.out.println(syncClass);
-		
-		System.out.println(syncLock);
-		System.out.println(syncStaticLock);
+		System.out.println("syncClass: " + syncClass);
+		System.out.println("syncStaticMethod: " + syncStaticMethod);
+		System.out.println("syncStaticLock: " + syncStaticLock);
+
+		System.out.println("syncMethod: " + syncMethod);
+		System.out.println("syncThis: " + syncThis);
+		System.out.println("syncLock: " + syncLock);
+
 	}
 	
 	/**

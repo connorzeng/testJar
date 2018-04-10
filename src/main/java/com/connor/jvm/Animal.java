@@ -8,6 +8,11 @@ public class Animal{
 	public static int VALUE = 123;
 
 	public void finalMethod(String string){
+		
+		String classLoaderName = this.getClass().getClassLoader().getClass().getName();
+		System.out.println("classLoaderName:" + classLoaderName);
+		
+		Dog doger = new Dog();
 		//hello
 		System.out.println("find method" + string);
 	}
