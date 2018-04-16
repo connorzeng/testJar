@@ -18,8 +18,8 @@ public class ConsumerProductBlocking {
 		
 		BlockingQueue<Character> blockingQueue = new ArrayBlockingQueue<Character>(1);
 		ExecutorService exec = Executors.newCachedThreadPool();
-		SenderBlocking sender = new SenderBlocking(blockingQueue);
-		ReaderBlocking reader = new ReaderBlocking(blockingQueue);
+		SenderMan sender = new SenderMan(blockingQueue);
+		ReaderMan reader = new ReaderMan(blockingQueue);
 		exec.execute(reader);
 		exec.execute(sender);
 
@@ -33,11 +33,11 @@ public class ConsumerProductBlocking {
 
 }
 
-class ReaderBlocking implements Runnable {
+class ReaderMan implements Runnable {
 
 	private BlockingQueue<Character> blockingQueue;
 
-	public ReaderBlocking(BlockingQueue<Character> blockingQueue) {
+	public ReaderMan(BlockingQueue<Character> blockingQueue) {
 		this.blockingQueue = blockingQueue;
 	}
 
@@ -45,8 +45,9 @@ class ReaderBlocking implements Runnable {
 	public void run() {
 		while (true) {
 			try {
+				System.out.println("reader begin to reader");
 				Character take = blockingQueue.take();
-				System.out.println(take);
+				System.out.println("reader get char:" + take);
 			} catch (InterruptedException e) {
 				System.out.println("我是 reader,我被打断了");
 				break;//必须加break,不然不会无线循环
@@ -55,11 +56,11 @@ class ReaderBlocking implements Runnable {
 	}
 }
 
-class SenderBlocking implements Runnable {
+class SenderMan implements Runnable {
 
 	private BlockingQueue<Character> blockingQueue;
 
-	public SenderBlocking(BlockingQueue<Character> blockingQueue) {
+	public SenderMan(BlockingQueue<Character> blockingQueue) {
 		this.blockingQueue = blockingQueue;
 	}
 
@@ -68,9 +69,10 @@ class SenderBlocking implements Runnable {
 		// 通过管道写入
 		while (true) {
 			try {
+				System.out.println("sender begin to send");
 				for (char c = 'A'; c < 'Z'; c++) {
 					blockingQueue.put(c);
-					TimeUnit.SECONDS.sleep(2);
+					TimeUnit.SECONDS.sleep(3);
 				}
 			} catch (InterruptedException e) {
 				System.out.println("我是sender,我被打断了");

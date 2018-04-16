@@ -10,7 +10,7 @@ public class ConcurrentmapTest {
 
     public static void main(String[] args) throws InterruptedException {
 
-        ConcurrentMap<String,Integer> goods = new ConcurrentHashMap<>();
+        final ConcurrentMap<String,Integer> goods = new ConcurrentHashMap<>();
         goods.put("goods",50);
 
         List<Thread> consumers = new ArrayList<Thread>();

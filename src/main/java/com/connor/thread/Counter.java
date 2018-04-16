@@ -30,16 +30,16 @@ public class Counter {
 		Long startMills = System.currentTimeMillis();
 
 		final Counter c = new Counter();
-		List<Thread> ts = new ArrayList<Thread>(100000);
+		List<Thread> ts = new ArrayList<Thread>(100);
 		for (int i = 0; i < 4; i++) {
 			Thread t = new Thread(new Runnable() {
 				@Override
 				public void run() {
-					for(int j=0;j<100000000;j++){
-						c.count();
+					for(int j=0;j<100;j++){
+						//c.count();
 						//c.safeCount();
 						//c.syncCount();
-						//c.lockCount();
+						c.lockCount();
 					}
 				}
 			});
