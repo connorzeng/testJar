@@ -18,12 +18,15 @@ import com.util.SleepUtils;
 
 public class TestThreadTool {
 
-	static CyclicBarrier cl = new CyclicBarrier(2);
+	static CyclicBarrier cl = new CyclicBarrier(3);
 
 	public static void main(String[] args) throws InterruptedException {
 		
 		//CyclicBarrier
-		//testCyclicBarrier();
+		testCyclicBarrier();
+		Thread.sleep(4000);
+		cl.reset();
+		System.out.println("down");
 		
 		//CountDownLatch
 		//testCountDownLatch();
@@ -32,7 +35,7 @@ public class TestThreadTool {
 		//testSemaphore();
 		
 		//顺序执行T1-T2-T3
-		testCountDown();
+		//testCountDown();
 	}
 	/**
 	 * 使用CountDownLatch 顺序执行T1-T2-T3
