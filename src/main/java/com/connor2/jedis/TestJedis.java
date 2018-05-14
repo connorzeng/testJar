@@ -3,6 +3,7 @@ package com.connor2.jedis;
 //http://blog.csdn.net/linlzk/article/details/41801391
 
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.Transaction;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +36,8 @@ public class TestJedis {
 			System.out.println("查看键 2的剩余生存时间：" + jedis.ttl("2"));
 			System.out.println("查看键 2所存储的值的类型：" + jedis.type("2"));
 			System.out.println("查看键 2的值：" + jedis.get("2"));
+			
+			//jedis执行脚本;
 
 			System.out.println("");
 		} catch (Exception e) {
@@ -125,7 +128,14 @@ public class TestJedis {
 	 * Redis 列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）。
 	 */
 	public void testList() {
-
+		
+		Transaction transation = jedis.multi();
+		
+		
+		
+		transation.exec();
+		
+		
 		jedis.select(3);
 		jedis.flushDB();
 		System.out.println("====列表list功能展示====");

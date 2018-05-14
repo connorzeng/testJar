@@ -1,4 +1,4 @@
-package com.connor2.nio;
+package com.connor2.io;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -70,8 +70,9 @@ public class NIOClient {
 			sendBuffer.put(sendText.getBytes());
 			sendBuffer.flip();
 			client.write(sendBuffer);
+			client.close();
 			//注册一个OP_WRITE,让客户端的key.isReadable()监听到
-			client.register(selector, SelectionKey.OP_READ);
+			//client.register(selector, SelectionKey.OP_READ);
 		}
 		
 	}

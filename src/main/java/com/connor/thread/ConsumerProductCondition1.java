@@ -46,7 +46,6 @@ public class ConsumerProductCondition1 {
 		for (Thread trd : trds) {
 			trd.start();
 		}
-
 	}
 
 	static class Product {

@@ -82,7 +82,7 @@ public class Counter {
 	private void syncCount() {
 		synchronized (this) {
 			try {
-				Thread.sleep(20);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

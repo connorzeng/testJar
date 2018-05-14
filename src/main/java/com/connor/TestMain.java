@@ -15,10 +15,10 @@ public  class TestMain {
 	
 	private  String test = "";
 	
-	
 	public static void main(String[] args) throws InterruptedException {
 		
-		
+		Father son = new Son();
+		son.print();
 		
 		List<String> a = new ArrayList<String>();
         a.add(new String("1aaaaa"));
@@ -110,5 +110,32 @@ public  class TestMain {
 		} finally {
 			System.out.println("hello");
 		}
+	}
+}
+
+class Father{
+	
+	public Father() {
+		init();
+	}
+
+	protected void init() {
+	}
+
+	public void print() {
+		System.out.println("2");
+	}
+}
+
+class Son extends Father{
+	private String b1 = null;
+	
+	protected void init(){
+		this.b1 = "0";
+		print();
+	}
+	
+	public void print() {
+		System.out.println(b1);
 	}
 }

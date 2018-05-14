@@ -1,4 +1,4 @@
-package com.connor2.nio;
+package com.connor2.io;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -21,18 +21,19 @@ public class NIOServer {
 	int flag;
 	
 	public NIOServer(int port) throws IOException{
+		//1.打开serverSocketChannel, 设置是否阻塞
 		ServerSocketChannel serverSocketChannel =  ServerSocketChannel.open();
-		//设置是否阻塞
 		serverSocketChannel.configureBlocking(false);
 		ServerSocket serverSocket = serverSocketChannel.socket();
-		//绑定IP和端口
+		//2.绑定IP和端口
 		serverSocket.bind(new InetSocketAddress(port));
+		//3.注册selcector
 		selector = Selector.open();
 		serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
 		System.out.println("server start");
 	}
 	
-	//监听
+	//4.监听
 	public void listen() throws IOException{
 		while(true){
 			selector.select();
@@ -62,17 +63,7 @@ public class NIOServer {
 	        clientChannel.register(selector, SelectionKey.OP_READ); 
 	        System.out.println("a new client connected"); 
 		} else if (selectKey.isReadable()){
-			//读取客户端数据
-			clientChannel = (SocketChannel) selectKey.channel();
-			StringBuffer buff = new StringBuffer();
-			int count = 0;
-			receiveBuffer.clear();
-			while ((count = clientChannel.read(receiveBuffer)) > 0){
-				buff.append(new String(receiveBuffer.array(),0,count));
-			}
-			System.out.println(buff.toString());
-			//注册一个OP_WRITE,让客户端的key.isReadable()监听到
-			clientChannel.register(selector, SelectionKey.OP_WRITE);
+			handleRead(clientChannel, selectKey);
 		} else if (selectKey.isWritable()){
 			clientChannel = (SocketChannel) selectKey.channel();
 			//向客户端写数据
@@ -84,5 +75,19 @@ public class NIOServer {
 			//注册一个OP_READ,让客户端的key.isReadable()监听到
 			clientChannel.register(selector, SelectionKey.OP_READ);
 		}
+	}
+
+	private void handleRead(SocketChannel clientChannel,SelectionKey selectKey) throws IOException {
+		//读取客户端数据
+		clientChannel = (SocketChannel) selectKey.channel();
+		StringBuffer buff = new StringBuffer();
+		int count = 0;
+		receiveBuffer.clear();
+		while ((count = clientChannel.read(receiveBuffer)) > 0){
+			buff.append(new String(receiveBuffer.array(),0,count));
+		}
+		System.out.println(buff.toString());
+		//注册一个OP_WRITE,让客户端的key.isReadable()监听到
+		clientChannel.register(selector, SelectionKey.OP_WRITE);
 	}
 }
