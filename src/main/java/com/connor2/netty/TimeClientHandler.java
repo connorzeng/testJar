@@ -1,5 +1,6 @@
 package com.connor2.netty;
 
+import java.util.Date;
 import java.util.logging.Logger;
 
 import io.netty.buffer.ByteBuf;
@@ -35,6 +36,12 @@ public class TimeClientHandler extends ChannelHandlerAdapter {
 		buf.readBytes(req);
 		String body = new String(req, "UTF-8");
 		System.out.println("Now is :" + body);
+        
+		
+		byte[] reqAgain = "QUERY TIME ORDER".getBytes();
+		ByteBuf messageAgain = Unpooled.buffer(reqAgain.length);
+		messageAgain.writeBytes(reqAgain);
+        ctx.write(messageAgain);
 	}
 
 	@Override
