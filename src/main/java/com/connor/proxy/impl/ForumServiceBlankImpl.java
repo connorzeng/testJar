@@ -3,7 +3,7 @@ package com.connor.proxy.impl;
 import com.connor.proxy.ForumService;
 import com.util.SleepUtils;
 
-public final class ForumServiceBlankImpl implements ForumService{
+public class ForumServiceBlankImpl implements ForumService{
 
 	@Override
 	public void removeTopic(long topicId) {
