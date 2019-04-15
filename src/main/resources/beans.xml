@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+    <bean abstract="true" id = "dogParent">
+        <property name="age" value="12"/>
+    </bean>
+
+    <bean id="dog" parent="dogParent" lazy-init="false" name="dogname" scope="singleton" class="com.connor.spring.bean.Dog" >
+        <property name="name" value="myNameIsXml"/>
+    </bean>
+
+
+
+    <bean id="dogprototype"  lazy-init="false" scope="prototype" class="com.connor.spring.bean.Dog" >
+        <property name="name" value="myNameIsXml"/>
+    </bean>
+
+
+</beans>

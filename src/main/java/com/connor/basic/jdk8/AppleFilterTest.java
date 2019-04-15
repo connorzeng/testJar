@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class AppleFilterTest {
 
 	public static void main(String[] args) {
-
+		//CONNOR 3.HELLO
 		List<Apple> inventory = new ArrayList<>();
 		inventory.add(new Apple(10.1, "green"));
 		inventory.add(new Apple(10.1, "green"));

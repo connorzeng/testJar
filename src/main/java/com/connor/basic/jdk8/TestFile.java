@@ -6,7 +6,7 @@ import java.io.FileFilter;
 public class TestFile {
 
 	public static void main(String[] args) {
-
+		//CONNOR 2.
 		File[] hiddenFiles = getHiddenFiles();
 		for (File file : hiddenFiles) {
 			System.out.println(file.getName());
@@ -19,7 +19,7 @@ public class TestFile {
 		}
 	}
 	
-	
+	////CONNOR 1.
 	/**
 	 * 
 	 * @return
