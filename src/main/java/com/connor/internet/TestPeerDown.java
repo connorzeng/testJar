@@ -14,7 +14,7 @@ public class TestPeerDown {
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    for (int f = 1; f <= 10; f++) {
+                    for (int f = 1; f <= 3; f++) {
                         String threadRequestName = threadName + "- requestTime - :" + f;
                         String result = HttpUtils.URLGet(url, null, "utf-8");
                         System.out.println(threadRequestName + ":" + result);
@@ -29,7 +29,7 @@ public class TestPeerDown {
 
     private static void sleepWell(){
         try {
-            Thread.sleep(Long.parseLong("1000"));
+            Thread.sleep(Long.parseLong("500"));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

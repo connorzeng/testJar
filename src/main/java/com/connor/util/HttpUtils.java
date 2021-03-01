@@ -44,7 +44,7 @@ public class HttpUtils {
 
 	private static int connectionTimeOut = 25000;
 
-	private static int socketTimeOut = 25000;
+	private static int socketTimeOut = 75000;
 
 	private static int maxConnectionPerHost = 20;
 
